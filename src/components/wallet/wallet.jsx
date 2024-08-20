@@ -182,7 +182,7 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
               {(
                 (data.balance_winnie * 0.0002 + Number(data.balance_ton) * tonPrice) /
                 tonPrice
-              ).toFixed(2)}{" "}
+              ).toFixed(3)}{" "}
               TON
             </span>
           </div>
@@ -220,7 +220,7 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
             <span className="balance-wallet-span">TON</span>
             <span className="balance-wallet-span">
               <img src={Ton} className="coin" alt="TON" />
-              {Number(data.balance_ton).toFixed(2)}
+              {Number(data.balance_ton).toFixed(3)}
             </span>
           </div>
         </div>
