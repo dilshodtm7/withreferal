@@ -98,7 +98,7 @@ function App() {
             <Task
               data={getalltasks}
               myId={myId}
-              fetchTasks={fetchAccountData}
+              fetchAccountData={fetchAccountData}
               loading={loading}
             />
           }
