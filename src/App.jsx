@@ -12,7 +12,7 @@ import Invite from "./components/invite/invite.jsx";
 import "./App.css";
 
 function App() {
-  const getMyAccount = "http://localhost:9090/auth/login";
+  const getMyAccount = "https://withreferal-back.onrender.com/auth/login";
   const myId = WebApp.initDataUnsafe.user.id
   const [userData, setUserData] = useState(null);
   const [data, setData] = useState(null);
