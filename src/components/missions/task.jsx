@@ -3,7 +3,7 @@ import "./style.css";
 import Special from "./special.jsx";
 import Content from "./content.jsx";
 
-const Task = ({ data,myId, fetchTasks, loading }) => {
+const Task = ({ data,myId,fetchAccountData, loading }) => {
   const [activeSection, setActiveSection] = useState("Special");
 
   return (
@@ -32,7 +32,7 @@ const Task = ({ data,myId, fetchTasks, loading }) => {
       </div>
 
       {activeSection === "Special" && (
-        <Special data={data} myId={myId} fetchTasks={fetchTasks} loading={loading} />
+        <Special data={data} myId={myId} fetchAccountData={fetchAccountData}} loading={loading} />
       )}
       {activeSection === "Content" && <Content />}
     </div>
