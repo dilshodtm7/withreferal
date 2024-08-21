@@ -32,7 +32,7 @@ const Task = ({ data,myId,fetchAccountData, loading }) => {
       </div>
 
       {activeSection === "Special" && (
-        <Special data={data} myId={myId} fetchAccountData={fetchAccountData}} loading={loading} />
+        <Special data={data} myId={myId} fetchAccountData={fetchAccountData} loading={loading} />
       )}
       {activeSection === "Content" && <Content />}
     </div>
