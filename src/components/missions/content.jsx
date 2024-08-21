@@ -132,7 +132,7 @@ const content = () => {
           <hr className="content-hr" />
           <div className="content-text">
             <span className="content-span">And get up to</span>
-            <span className="content-span">20 - TON</span>
+            <span className="content-span"><img src={Ton} className="coins" alt="" /> 20 TON</span>
             <span className="content-span">for every video</span>
           </div>
           <hr className="content-hr" />
