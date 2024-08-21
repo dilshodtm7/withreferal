@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTelegram } from "react-icons/fa";
 import withIcon from "../../assets/loader5.gif";
 
-const special = ({ data,myId, fetchTasks, loading }) => {
+const special = ({ data,myId, fetchAccountData, loading }) => {
   const Complate = "http://localhost:9090/auth/complate";
 
   const [tasks, setTasks] = useState([]);
@@ -68,7 +68,9 @@ const special = ({ data,myId, fetchTasks, loading }) => {
 
   const checkTask = () => {
     ComplateTasks();
-    fetchTasks();
+        setTimeout(() => {
+      fetchAccountData();
+    }, 2000);
   };
 
   return (
