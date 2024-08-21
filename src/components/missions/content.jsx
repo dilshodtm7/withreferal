@@ -8,14 +8,7 @@ import Ton from "../../assets/ton.png";
 const content = () => {
   const [selected, setSelected] = useState(null);
 
-  const checkboxes = [
-    "5K - 9.9K views = 500",
-    "10K - 49.9K views = 1000",
-    "50K - 99.9K views = 2000",
-    "100K - 499.9K views = 5000",
-    "500K - 999.9K views =20000",
-    "1M + views = 1000000 ",
-  ];
+
   const handleChange = (index) => {
     setSelected(index);
   };
