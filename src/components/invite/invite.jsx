@@ -71,14 +71,14 @@ const invite = ({referer,loading,data}) => {
           <div className="referal-balance">
             <img src={Tonup} alt="" className="referal-balance-img" />
             <div className="referal-balance-text">{
-              referer.length *500
+              referer?.length *500
               }</div>
           </div>
           <hr className="claim-hr" />
           <div className="referal-balance">
             <img src={Ton} alt="" className="referal-balance-img" />
             <div className="referal-balance-text">{
-              referer.length * 0.001}</div>
+              referer?.length * 0.001}</div>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ const invite = ({referer,loading,data}) => {
         <div className="friends-list-container">
 
              
-             {referer.map((referer, index) => {
+             {referer?.map((referer, index) => {
                 return (
                   <div className="friends-list-item">
             <div className="image">
