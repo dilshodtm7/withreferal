@@ -5,8 +5,8 @@ import withIcon from "../../assets/loader5.gif";
 
 const Settings = ({ data, loading, myId, fetchAccountData }) => {
   const [result, setResult] = useState(null);
-  const newspin = "http://localhost:9090/auth/newspin";
-  const newquestion = "http://localhost:9090/auth/question";
+  const newspin = "https://withreferal-back.onrender.com/auth/newspin";
+  const newquestion = "https://withreferal-back.onrender.com/auth/question";
 
   const bonus = [
     {
