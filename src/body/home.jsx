@@ -14,8 +14,8 @@ import Tournament from "./tournament.jsx";
 import Daily from "./daily.jsx";
 
 const Home = ({ data,myId,userData, loading, fetchAccountData,tournament }) => {
-  const updateStatusWithBanalce = "http://localhost:9090/auth/bybalance";
-  const updateStatus = "http://localhost:9090/auth/updatestatus";
+  const updateStatusWithBanalce = "https://withreferal-back.onrender.com/auth/bybalance";
+  const updateStatus = "https://withreferal-back.onrender.com/auth/updatestatus";
 
   const navigate = useNavigate();
 
