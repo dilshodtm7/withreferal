@@ -60,7 +60,7 @@ const content = () => {
                 />
                 <span className="checks-span">
                   5K - 9.9K views = <img src={Ton} className="coins" alt="" />{" "}
-                  0.2 - 0.5 TON
+                  0.2 TON
                 </span>
               </div>
               <div className="checks">
@@ -72,7 +72,7 @@ const content = () => {
                 />
                 <span className="checks-span">
                   10K - 49.9K views = <img src={Ton} className="coins" alt="" />{" "}
-                  0.5 - 1 TON
+                  0.5 TON
                 </span>
               </div>
               <div className="checks">
@@ -84,7 +84,7 @@ const content = () => {
                 />
                 <span className="checks-span">
                   50K - 99.9K views = <img src={Ton} className="coins" alt="" />{" "}
-                  1 - 3 TON
+                  1 TON
                 </span>
               </div>
               <div className="checks">
@@ -96,7 +96,7 @@ const content = () => {
                 />
                 <span className="checks-span">
                   100K - 499.9K views ={" "}
-                  <img src={Ton} className="coins" alt="" /> 3-5 TON
+                  <img src={Ton} className="coins" alt="" /> 5 TON
                 </span>
               </div>
               <div className="checks">
@@ -107,8 +107,8 @@ const content = () => {
                   onChange={() => handleChange(4)}
                 />
                 <span className="checks-span">
-                  500K - 999.9K views ={" "}
-                  <img src={Ton} className="coins" alt="" /> 5 - 10 TON
+                  500K - 999.9K views =
+                  <img src={Ton} className="coins" alt="" /> 10 TON
                 </span>
               </div>
               <div className="checks">
@@ -139,7 +139,7 @@ const content = () => {
           <hr className="content-hr" />
           <div className="content-text">
             <span className="content-span">And get up to</span>
-            <span className="content-span">20 -  <img src={Ton} className="coins" alt="" /> TON</span>
+            <span className="content-span">20 - <img src={Ton} className="coins" alt="" /> TON</span>
             <span className="content-span">for every video</span>
           </div>
           <hr className="content-hr" />
