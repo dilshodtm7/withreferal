@@ -71,14 +71,14 @@ const invite = ({referer,loading,data}) => {
           <div className="referal-balance">
             <img src={Tonup} alt="" className="referal-balance-img" />
             <div className="referal-balance-text">{
-              referer?.length *500
+              referer.length? referer.length * 500 : 0
               }</div>
           </div>
           <hr className="claim-hr" />
           <div className="referal-balance">
             <img src={Ton} alt="" className="referal-balance-img" />
             <div className="referal-balance-text">{
-              referer?.length * 0.001}</div>
+              referer.length? referer.length * 0.001 : 0}</div>
           </div>
         </div>
       </div>
