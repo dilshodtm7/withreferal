@@ -8,6 +8,7 @@ const special = ({ data,myId, fetchTasks, loading }) => {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [newPost, setNewPost] = useState(null);
+   const [amount, setAmount] = useState(0);
   const [clickedMe, setClickedMe] = useState(localStorage.getItem("task"));
   const [buttonState, setButtonState] = useState("CLAIM");
 
@@ -28,6 +29,7 @@ const special = ({ data,myId, fetchTasks, loading }) => {
         body: JSON.stringify({
           user_tg: myId.toString(),
           task_id: newPost,
+          amount: amount,
         }),
       });
 
@@ -112,6 +114,7 @@ const special = ({ data,myId, fetchTasks, loading }) => {
                             localStorage.setItem("task", task.id);
                             setNewPost(task.id);
                             localStorage.setItem("amount", task.amount);
+                            setAmount(task.amount);
                             handleStartClick();
                           }}
                         >
