@@ -67,6 +67,7 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
   });
 
   const checkTask = () => {
+   setButtonState("Claimed");
     ComplateTasks();
         setTimeout(() => {
       fetchAccountData();
