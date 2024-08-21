@@ -96,7 +96,7 @@ const invite = ({referer,loading,data}) => {
             </div>
             <div className="DIV">
               <div className="referal-balance">
-                
+                <img src={Ton} alt="" className="referal-balance-img" /> 0.001
                 
               </div>
             </div>
