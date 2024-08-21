@@ -13,7 +13,7 @@ const Swap = ({ data, fetchAccountData, myId, toggleVisibility }) => {
 
   const sendInputRef = useRef(null);
   const receiveInputRef = useRef(null);
-  const SwapURL = "http://localhost:9090/auth/swap";
+  const SwapURL = "https://withreferal-back.onrender.com/auth/swap";
 
   const toggleSendDropdown = () => {
     setIsSendDropdownOpen(!isSendDropdownOpen);
