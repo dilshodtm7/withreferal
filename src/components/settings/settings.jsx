@@ -6,6 +6,7 @@ import withIcon from "../../assets/loader5.gif";
 const Settings = ({ data, loading, myId, fetchAccountData }) => {
   const [result, setResult] = useState(null);
   const newspin = "http://localhost:9090/auth/newspin";
+  const newquestion = "http://localhost:9090/auth/question";
 
   const bonus = [
     {
@@ -49,6 +50,11 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
   currentDate.setHours(currentDate.getHours() + 8);
   const newPostDate = currentDate.toISOString();
 
+  const currentDates = new Date();
+  currentDates.setUTCDate(currentDates.getUTCDate() + 1);
+  currentDates.setHours(0, 0, 0, 0);
+  const newPostsDate = currentDates.toISOString();
+
   const updateSpin = async () => {
     await fetch(newspin, {
       method: "PATCH",
@@ -59,6 +65,19 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
         user_tg: myId.toString(),
         balance_winnie: Number(data.balance_winnie) + Number(result),
         spin_date: newPostDate,
+      }),
+    });
+  };
+
+  const updatequestion = async () => {
+    await fetch(newquestion, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_tg: myId.toString(),
+        question: newPostsDate,
       }),
     });
   };
@@ -120,6 +139,63 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (loading) {
+      let forquestion = false;
+      let myquestion = false;
+      const updateUI = () => {
+        const currentDate = new Date();
+        const storedDate = new Date(data.question);
+        const questionBtn = document.getElementById("question-btn");
+        const crosswords = document.querySelectorAll(".crossword-input");
+        const Youtube = document.getElementById("question-youtube");
+        if (data.question) {
+          const diffMs = storedDate - currentDate;
+          if (diffMs > 0) {
+            questionBtn.innerText = `${Math.floor(
+              diffMs / (1000 * 60 * 60)
+            )}h : ${Math.floor(
+              (diffMs % (1000 * 60 * 60)) / (1000 * 60)
+            )}m : ${Math.floor((diffMs % (1000 * 60)) / 1000)}s`;
+            crosswords.forEach(crossword => {
+              crossword.readOnly = true;
+          });
+            Youtube.style.display = "none";
+            questionBtn.disabled = true;
+          } else {
+            if (!myquestion) {
+              crosswords.forEach(crossword => {
+                crossword.readOnly = false;
+            });
+              Youtube.style.display = "";
+              myquestion = true;
+              questionBtn.innerText = "Enter Question";
+              questionBtn.disabled = false;
+            }
+          }
+        } else {
+          if (forquestion === false) {
+            forquestion = true;
+            crosswords.forEach(crossword => {
+              crossword.readOnly = false;
+          });
+            Youtube.style.display = "";
+            questionBtn.innerText = "Enter Question";
+            questionBtn.disabled = false;
+          }
+        }
+      };
+
+      const intervalId = setInterval(updateUI, 1000);
+      const timeoutId = setTimeout(updateUI, 100);
+
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [data]);
+
   const posted = () => {
     document.getElementById("spin-btn").disabled = true;
     document.getElementById("overs-roulete").style.display = "none";
@@ -130,9 +206,21 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
     }, 2000);
   };
 
+  const posteQuestion = () => {
+    document.getElementById("question-btn").disabled = true;
+    document.getElementById("question").style.display = "none";
+    updatequestion();
+
+    setTimeout(() => {
+      fetchAccountData();
+    }, 2000);
+  };
+
   const correctAnswer = "DILSHOD";
   const [inputs, setInputs] = useState(Array(correctAnswer.length).fill(""));
-  const [status, setStatus] = useState(Array(correctAnswer.length).fill("default"));
+  const [status, setStatus] = useState(
+    Array(correctAnswer.length).fill("default")
+  );
   const [message, setMessage] = useState("");
 
   const inputRefs = useRef([]);
@@ -187,6 +275,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
 
     if (newStatus.every((status) => status === "correct")) {
       setMessage("All letters are correct!");
+      document.getElementById("question").style.display = "flex";
     } else {
       setMessage("Some letters are incorrect.");
     }
@@ -197,6 +286,12 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
       <div className="w80">
         <span>Bonus</span>
       </div>
+      {loading === false ? (
+          <>
+            <img src={withIcon} className="loader-img" alt="" />
+            <div className="loader"></div>
+          </>
+        ) : (<>
       <div
         className="overs-roulete"
         id="overs-roulete"
@@ -214,19 +309,30 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
         </div>
       </div>
 
+      <div className="overs-roulete" id="question" style={{ display: "none" }}>
+        <div className="claim-roulete">
+          <span className="claim-got">You got</span>
+          <span className="claim-span">8000 Winnie Coin</span>
+          <button className="claim-btn" onClick={posteQuestion}>
+            Claim Bonus
+          </button>
+        </div>
+      </div>
+
       <div className="daily-question">
         <div className="question">Daily Question</div>
         <div className="question">
-          <button className="question-btn"> ⫸ Watch Video</button>
-
+          <button className="question-btn" id="question-youtube">
+            {" "}
+            ⫸ Watch Video
+          </button>
         </div>
-        <hr className="line" />
-        <div className="crossword">
+        <div className="crossword" id="crossword-words">
           {inputs.map((input, index) => (
             <input
               type="text"
               key={index}
-              className={`crossword-input ${status[index]}`}
+              className={`crossword-words  crossword-input ${status[index]}`}
               value={input}
               onChange={(event) => handleInputChange(event, index)}
               onKeyDown={(event) => handleKeyDown(event, index)}
@@ -236,7 +342,11 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
           ))}
         </div>
 
-        <button className="crossword-btn-enter" onClick={checkAnswer}>
+        <button
+          className="crossword-btn-enter"
+          id="question-btn"
+          onClick={checkAnswer}
+        >
           Enter
         </button>
 
@@ -253,13 +363,8 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
           </div>
         </div>
 
-        {loading === false ? (
-          <>
-            <img src={withIcon} className="loader-img" alt="" />
-            <div className="loader"></div>
-          </>
-        ) : (
-          <>
+
+         
             <div className="roulete-container">
               <Wheel
                 mustStartSpinning={mustSpin}
@@ -280,9 +385,11 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
             >
               Free spin
             </button>
-          </>
-        )}
+          
+        
       </div>
+      </>
+    )}
     </>
   );
 };
