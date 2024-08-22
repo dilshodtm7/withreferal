@@ -20,7 +20,6 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
   };
   const tonPrice = 7.89
 
-   const tonPrice = 7.89
   const [gettonPrice, setTonPrice] = useState(0);
 
   const getTonPrice = async () => {
