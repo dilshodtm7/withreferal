@@ -8,17 +8,15 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [newPost, setNewPost] = useState(null);
-  const [amount, setAmount] = useState(0);
+   const [amount, setAmount] = useState(0);
   const [clickedMe, setClickedMe] = useState(localStorage.getItem("task"));
-  const [buttonState, setButtonState] = useState("Claim");
-
+  const [buttonState, setButtonState] = useState("CLAIM");
   useEffect(() => {
     if (loading) {
       setTasks(data.uncomplated);
       setCompletedTasks(data.complated);
     }
   });
-
   const ComplateTasks = async () => {
     try {
       const response = await fetch(Complate, {
@@ -32,7 +30,6 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
           amount: amount,
         }),
       });
-
       if (response.ok) {
         console.log("Account data updated successfully");
       }
@@ -40,7 +37,6 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       console.error("Error fetching account data:", error);
     }
   };
-
   useEffect(() => {
     if (newPost !== null) {
       const timer = setTimeout(() => {
@@ -49,7 +45,6 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       return () => clearTimeout(timer);
     }
   }, [newPost]);
-
   const handleStartClick = () => {
     setButtonState("Wait");
     setTimeout(() => {
@@ -59,21 +54,18 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       setButtonState("Claim");
     }, 3000);
   };
-
   useEffect(() => {
     setInterval(() => {
       setClickedMe(localStorage.getItem("task"));
     }, 1000);
   });
-
   const checkTask = () => {
+   setButtonState("Claimed");
     ComplateTasks();
-    setButtonState("Claimed");
-    setTimeout(() => {
+        setTimeout(() => {
       fetchAccountData();
     }, 2000);
   };
-
   return (
     <>
       {loading === false ? (
@@ -172,5 +164,4 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
     </>
   );
 };
-
 export default special;
