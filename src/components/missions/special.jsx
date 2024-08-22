@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaTelegram } from "react-icons/fa";
 import withIcon from "../../assets/loader5.gif";
 
-const Special = ({ data, myId, fetchAccountData, loading }) => {
-  const COMPLATE_URL = "http://localhost:9090/auth/complate";
+const special = ({ data,myId, fetchAccountData, loading }) => {
+  const Complate = "http://localhost:9090/auth/complate";
 
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [newPost, setNewPost] = useState(null);
   const [amount, setAmount] = useState(0);
-  const [clickedTaskId, setClickedTaskId] = useState(localStorage.getItem("task"));
+  const [clickedMe, setClickedMe] = useState(localStorage.getItem("task"));
   const [buttonState, setButtonState] = useState("Claim");
 
   useEffect(() => {
@@ -17,11 +17,11 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
       setTasks(data.uncomplated);
       setCompletedTasks(data.complated);
     }
-  }, [loading, data]);
+  });
 
-  const completeTasks = async () => {
+  const ComplateTasks = async () => {
     try {
-      const response = await fetch(COMPLATE_URL, {
+      const response = await fetch(Complate, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
         console.log("Account data updated successfully");
       }
     } catch (error) {
-      console.error("Error completing task:", error);
+      console.error("Error fetching account data:", error);
     }
   };
 
@@ -46,7 +46,6 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
       const timer = setTimeout(() => {
         localStorage.setItem("task", newPost);
       }, 1000);
-
       return () => clearTimeout(timer);
     }
   }, [newPost]);
@@ -54,7 +53,6 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
   const handleStartClick = () => {
     setButtonState("Wait");
     setTimeout(() => {
-      // Simulate opening a URL
       // window.location.href = "https://t.me/aviabot_store";
     }, 1000);
     setTimeout(() => {
@@ -63,16 +61,14 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
   };
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setClickedTaskId(localStorage.getItem("task"));
+    setInterval(() => {
+      setClickedMe(localStorage.getItem("task"));
     }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  });
 
   const checkTask = () => {
-    completeTasks();
-    setButtonState("Wait");
+    ComplateTasks();
+    setButtonState("wait");
     setTimeout(() => {
       fetchAccountData();
     }, 2000);
@@ -82,98 +78,99 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
     <>
       {loading === false ? (
         <>
-          <img src={withIcon} className="loader-img" alt="Loading..." />
-          <div className="loader"></div>
+          <img src={withIcon} className="loader-img" alt="" />
+          <div class="loader"></div>
         </>
       ) : (
-        <div className="task-list">
-          {tasks.map((task) => (
-            <div className="task-list-item" id="task" key={task.id}>
-              <div className="task-list-image">
-                <FaTelegram className="task-list-image-icon" />
-              </div>
-              <div className="task-info">
-                <div className="task-list-name">
-                  <div className="task-list-name-title">{task.title}</div>
-                  <div className="task-list-name-subtitle">
-                    {task.amount
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
-                    Winnie
-                  </div>
+        <>
+          <div className="task-list">
+            {tasks.map((task) => (
+              <div className="task-list-item" id="task" key={task.id}>
+                <div className="task-list-image">
+                  <FaTelegram className="task-list-image-icon" />
                 </div>
-                <div className="task-list-status">
-                  {clickedTaskId == task.id ? (
-                    <button
-                      className="task-list-status-button"
-                      id="start"
-                      onClick={checkTask}
-                      disabled={buttonState !== "Claim"}
-                    >
-                      {buttonState}
-                    </button>
-                  ) : (
-                    <>
+                <div className="task-info">
+                  <div className="task-list-name">
+                    <div className="task-list-name-title">{task.title}</div>
+                    <div className="task-list-name-subtitle">
+                      {task.amount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
+                      Winnie
+                    </div>
+                  </div>
+                  <div className="task-list-status">
+                    {clickedMe == task.id ? (
                       <button
-                        className="task-list-status-button active-btn"
+                        className="task-list-status-button"
                         id="start"
-                        onClick={() => {
-                          localStorage.setItem("task", task.id);
-                          setNewPost(task.id);
-                          localStorage.setItem("amount", task.amount);
-                          setAmount(task.amount);
-                          handleStartClick();
-                        }}
+                        onClick={checkTask}
                       >
-                        START
+                        {buttonState || "Wait"}
                       </button>
-                      <button
-                        className="task-list-status-button completed"
-                        id="claimed"
-                        hidden
-                      >
-                        Wait
-                      </button>
-                    </>
-                  )}
+                    ) : (
+                      <>
+                        <button
+                          className="task-list-status-button active-btn"
+                          id="start"
+                          onClick={() => {
+                            localStorage.setItem("task", task.id);
+                            setNewPost(task.id);
+                            localStorage.setItem("amount", task.amount);
+                            setAmount(task.amount);
+                            handleStartClick();
+                          }}
+                        >
+                          START
+                        </button>
+                        <button
+                          className="task-list-status-button completed"
+                          id="claimed"
+                          hidden
+                        >
+                          Wait
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          {completedTasks && completedTasks.length > 0 && (
-            <>
-              <hr className="task-hr" />
-              {completedTasks.map((task) => (
-                <div className="task-list-item" key={task.id}>
-                  <div className="task-list-image">
-                    <FaTelegram className="task-list-image-icon" />
+            ))}
+           {
+            completedTasks? 
+           <> <hr className="task-hr" />
+            {completedTasks.map((task) => (
+              <div className="task-list-item " key={task.id}>
+                <div className="task-list-image">
+                  <FaTelegram className="task-list-image-icon" />
+                </div>
+                <div className="task-info">
+                  <div className="task-list-name">
+                    <div className="task-list-name-title title-complated ">
+                      {task.title}
+                    </div>
+                    <div className="task-list-name-subtitle title-complated">
+                      {task.amount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
+                      Winnie
+                    </div>
                   </div>
-                  <div className="task-info">
-                    <div className="task-list-name">
-                      <div className="task-list-name-title title-completed">
-                        {task.title}
-                      </div>
-                      <div className="task-list-name-subtitle title-completed">
-                        {task.amount
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
-                        Winnie
-                      </div>
-                    </div>
-                    <div className="task-list-status">
-                      <button className="task-list-status-button completed">
-                        Completed
-                      </button>
-                    </div>
+                  <div className="task-list-status">
+                    <button className="task-list-status-button completed">
+                      Completed
+                    </button>
                   </div>
                 </div>
-              ))}
-            </>
-          )}
-        </div>
+              </div>
+            ))}
+            </> : null
+           }
+          </div>
+        </>
       )}
     </>
   );
 };
 
-export default Special;
+export default special;
