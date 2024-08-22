@@ -36,7 +36,7 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
       if (response.ok) {
         const data = await response.json();
         // Assuming the response structure from CoinGecko:
-        const price = data.data;
+        const price = data.data.coins[0].price;;
         setTonPrice(price); // Ensure `setTonPrice` is defined and available in your context
       } else {
         console.error("Failed to fetch account data");
