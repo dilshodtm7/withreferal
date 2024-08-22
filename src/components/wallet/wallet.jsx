@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TonConnectButton } from "@tonconnect/ui-react";
 import Coin from "../../assets/winni.png";
 import Ton from "../../assets/ton.png";
