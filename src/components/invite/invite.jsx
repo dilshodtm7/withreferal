@@ -31,7 +31,7 @@ const invite = ({referer,loading,data}) => {
   navigator.clipboard.writeText(copyText)
     .then(() => {
       // Notify the user upon successful copy
-      notifyCopy();
+     toast.success("Invite Link Copied"); 
     })
     .catch(err => {
       // Log an error message if copying fails
@@ -39,17 +39,7 @@ const invite = ({referer,loading,data}) => {
     });
 };
 
-  const notifyCopy = () =>
-    toast.success("Invite link copied", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+
   
 
   return (
