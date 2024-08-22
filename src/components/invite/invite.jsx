@@ -14,12 +14,28 @@ const invite = ({referer,loading,data}) => {
 
   const referal = "https://t.me/winniecoin_bot/play?startapp="
   
+//   const copyText = () => {
+//     var copyText = referal + data.user_tg;
+//     navigator.clipboard.writeText(copyText).then(() => {
+//         notifyCopy()
+//     }).catch(err => {
+//         console.error("Failed to copy text: ", err);
+//     });
+// };
+
   const copyText = () => {
-    var copyText = referal + data.user_tg;
-    navigator.clipboard.writeText(copyText).then(() => {
-        notifyCopy()
-    }).catch(err => {
-        console.error("Failed to copy text: ", err);
+  // Concatenate the referral link and the user token
+  const copyText = `${referal}${data.user_tg}`;
+
+  // Use the Clipboard API to copy text to the clipboard
+  navigator.clipboard.writeText(copyText)
+    .then(() => {
+      // Notify the user upon successful copy
+      notifyCopy();
+    })
+    .catch(err => {
+      // Log an error message if copying fails
+      console.error("Failed to copy text: ", err);
     });
 };
 
