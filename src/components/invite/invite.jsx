@@ -5,6 +5,8 @@ import { FaUserGraduate } from "react-icons/fa";
 import Tonup from "../../assets/winni.png";
 import Ton from "../../assets/ton.png";
 import withIcon from "../../assets/loader5.gif";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const invite = ({referer,loading,data}) => {
@@ -15,11 +17,24 @@ const invite = ({referer,loading,data}) => {
   const copyText = () => {
     var copyText = referal + data.user_tg;
     navigator.clipboard.writeText(copyText).then(() => {
-        console.log("Text copied to clipboard:", copyText);
+        notifyCopy()
     }).catch(err => {
         console.error("Failed to copy text: ", err);
     });
 };
+
+  const notifyCopy = () =>
+    toast.success("Invite link copied", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  
 
   return (
     <>
