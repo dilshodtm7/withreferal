@@ -13,31 +13,6 @@ const invite = ({referer,loading,data}) => {
 
 
   const referal = "https://t.me/winniecoin_bot/play?startapp="
-  
-//   const copyText = () => {
-//     var copyText = referal + data.user_tg;
-//     navigator.clipboard.writeText(copyText).then(() => {
-//         notifyCopy()
-//     }).catch(err => {
-//         console.error("Failed to copy text: ", err);
-//     });
-// };
-
-  const copyText = () => {
-  // Concatenate the referral link and the user token
-  const copyText = `${referal}${data.user_tg}`;
-
-  // Use the Clipboard API to copy text to the clipboard
-  navigator.clipboard.writeText(copyText)
-    .then(() => {
-      // Notify the user upon successful copy
-     toast.success("Invite Link Copied"); 
-    })
-    .catch(err => {
-      // Log an error message if copying fails
-      console.error("Failed to copy text: ", err);
-    });
-};
 
 
   
@@ -71,9 +46,6 @@ const invite = ({referer,loading,data}) => {
                 value={referal + data.user_tg}
                 readOnly
               />
-              <button onClick={copyText} className="copy-btn">
-                <FaCopy />
-              </button>
             </div>
             <div className="invite-buttons">
               <a href={`https://t.me/share/url?url=https://t.me/winniecoin_bot/play?startapp=${encodeURIComponent(data.user_tg)}&text=${encodeURIComponent('💎 Get a WINNIE COIN airdrop! +5000 WINNIE COIN and +1 TON as a first-time gift!')}`}>
@@ -83,9 +55,7 @@ const invite = ({referer,loading,data}) => {
 </a>
 
 
-{/*               <button className="invite-btn" onClick={copyText}>
-                Invite Friend
-              </button> */}
+
             </div>
           </div>
         </div>
