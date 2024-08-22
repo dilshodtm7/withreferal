@@ -55,7 +55,7 @@ const invite = ({referer,loading,data}) => {
               </button>
             </div>
             <div className="invite-buttons">
-              <a href={`https://t.me/share/url?url=https://t.me/winniecoin_bot/play?startapp=${encodeURIComponent(data.user_tg)}&text=${encodeURIComponent('💎 Get a WINNIE COIN airdrop!%0A💸 +5000 WINNIE COIN and +1 TON as a first-time gift!%0AJoin now and start mining!')}`}>
+              <a href={`https://t.me/share/url?url=https://t.me/winniecoin_bot/play?startapp=${encodeURIComponent(data.user_tg)}&text=${encodeURIComponent('💎 Get a WINNIE COIN airdrop!  💸+5000 WINNIE COIN and +1 TON as a first-time gift!   Join now and start mining!')}`}>
   <button className="invite-btn">
     Invite Friend
   </button>
