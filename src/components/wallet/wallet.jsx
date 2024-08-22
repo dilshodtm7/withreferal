@@ -23,7 +23,7 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
   const [gettonPrice, setTonPrice] = useState(0);
 
   const getTonPrice = async () => {
-    const url = "https://api.coingecko.com/api/v3/simple/price?ids=toncoin&vs_currencies=usd"; // Update this to the correct API endpoint
+    const url = "https://api.coinranking.com/v2/coins?search=toncoin"; // Update this to the correct API endpoint
     
     try {
       const response = await fetch(url, {
