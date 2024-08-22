@@ -55,9 +55,14 @@ const invite = ({referer,loading,data}) => {
               </button>
             </div>
             <div className="invite-buttons">
-              <button className="invite-btn" onClick={copyText}>
+              <a href={`https://t.me/share/url?url=https://t.me/winniecoin_bot/play?startapp=${encodeURIComponent(data.user_tg)}&text=claim%20your%20bonus`}>
+  <button className="invite-btn">
+    Invite Friend
+  </button>
+</a>
+{/*               <button className="invite-btn" onClick={copyText}>
                 Invite Friend
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
