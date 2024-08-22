@@ -20,7 +20,41 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
   };
   const tonPrice = 7.89
 
+   const tonPrice = 7.89
+  const [gettonPrice, setTonPrice] = useState(0);
 
+  const getTonPrice = async () => {
+    const url = "https://api.coingecko.com/api/v3/simple/price?ids=toncoin&vs_currencies=usd"; // Update this to the correct API endpoint
+    
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        // Assuming the response structure from CoinGecko:
+        const price = data;
+        setTonPrice(price); // Ensure `setTonPrice` is defined and available in your context
+      } else {
+        console.error("Failed to fetch account data");
+      }
+    } catch (error) {
+      console.error("Error fetching account data:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    getTonPrice();
+
+  }, []);
+
+
+  console.log(gettonPrice);
 
 
 
