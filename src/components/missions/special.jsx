@@ -3,7 +3,7 @@ import { FaTelegram } from "react-icons/fa";
 import withIcon from "../../assets/loader5.gif";
 
 const special = ({ data,myId, fetchAccountData, loading }) => {
-  const Complate = "http://localhost:9090/auth/complate";
+  const Complate = "https://withreferal-back.onrender.com/auth/complate";
 
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
