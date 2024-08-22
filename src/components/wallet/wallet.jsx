@@ -182,7 +182,7 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
               {(
                 (data.balance_winnie * 0.0002 + Number(data.balance_ton) * tonPrice) /
                 tonPrice
-              ).toFixed(3)}{" "}
+              ).toFixed(2)}{" "}
               TON
             </span>
           </div>
