@@ -59,6 +59,27 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       setClickedMe(localStorage.getItem("task"));
     }, 1000);
   });
+
+
+  
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    const checked = document.getElementById("checked");
+    if (checked) {
+      if (checked.innerText === 'Claimed') {
+        checked.disabled = true;
+      } else {
+        checked.disabled = false;
+      }
+    }
+  }, 1000);
+
+  return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+}, [clickedMe]); 
+
+
+
+  
   const checkTask = () => {
    setButtonState("Claimed");
     ComplateTasks();
@@ -95,7 +116,7 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
                     {clickedMe == task.id ? (
                       <button
                         className="task-list-status-button"
-                        id="start"
+                        id="checked"
                         onClick={checkTask}
                       >
                         {buttonState || "Wait"}
