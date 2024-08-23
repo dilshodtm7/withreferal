@@ -283,9 +283,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
 
   return (
     <>
-      <div className="w80">
-        <span>Bonus</span>
-      </div>
+     
       {loading === false ? (
           <>
             <img src={withIcon} className="loader-img" alt="" />
