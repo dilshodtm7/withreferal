@@ -208,7 +208,6 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
 
   const posteQuestion = () => {
     document.getElementById("question-btn").disabled = true;
-    document.getElementById("question").style.display = "none";
     updatequestion();
 
     setTimeout(() => {
