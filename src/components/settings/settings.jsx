@@ -317,7 +317,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
         </div>
       </div>
 
-      <div className="daily-question">
+{/*       <div className="daily-question">
         <div className="question">Daily Question</div>
         <div className="question">
           <button className="question-btn" id="question-youtube">
@@ -349,7 +349,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
         </button>
 
         {message && <div className="message">{message}</div>}
-      </div>
+      </div> */}
 
       <hr className="line" />
       <div className="setting-container">
