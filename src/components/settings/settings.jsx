@@ -160,14 +160,14 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
             crosswords.forEach(crossword => {
               crossword.readOnly = true;
           });
-            Youtube.style.display = "none";
+
             questionBtn.disabled = true;
           } else {
             if (!myquestion) {
               crosswords.forEach(crossword => {
                 crossword.readOnly = false;
             });
-              Youtube.style.display = "";
+
               myquestion = true;
               questionBtn.innerText = "Enter Question";
               questionBtn.disabled = false;
@@ -179,7 +179,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
             crosswords.forEach(crossword => {
               crossword.readOnly = false;
           });
-            Youtube.style.display = "";
+
             questionBtn.innerText = "Enter Question";
             questionBtn.disabled = false;
           }
@@ -208,6 +208,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
 
   const posteQuestion = () => {
     document.getElementById("question-btn").disabled = true;
+    document.getElementById("question").style.display = "none";
     updatequestion();
 
     setTimeout(() => {
