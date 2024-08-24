@@ -116,8 +116,7 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
       const timeElement = document.getElementById("time");
       const btnElement = document.getElementById("btn");
       const titleElement = document.getElementById("title-farming");
-      const imageElement = document.querySelector("#imageID");
-      if (!timeElement || !btnElement || !titleElement || !imageElement) return;
+      if (!timeElement || !btnElement || !titleElement ) return;
       if (status === "active") {
         const diffMs = storedDate - currentDate;
         
@@ -224,19 +223,19 @@ localStorage.setItem("tournament", true);
               </span>
             </div>
             <div className="mining-container">
-{/*               	<div class="avatar">
+              	<div class="avatar">
 
 			<img src={Loaders} className="minion-img" alt="Skytsunami" />
 	
 
 	
-</div> */}
-              <img
+</div>
+{/*               <img
                 src={WinnieJpg}
                 id="imageID"
                 alt="Mining Animation"
                 className="minion-img"
-              />
+              /> */}
             </div>
             <button id="btn" className="mayning" onClick={startMining}>
               <span className="title" id="title-farming">
