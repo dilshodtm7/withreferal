@@ -130,9 +130,9 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
           btnElement.disabled = true;
           titleElement.innerText = "Mining";
           btnElement.classList.add("disabled");
-          imageElement.setAttribute("src", Winnie);
+
         } else {
-          imageElement.setAttribute("src", WinnieJpg);
+
           btnElement.disabled = false;
           btnElement.classList.remove("disabled", "activated");
           if (!myname) {
@@ -142,7 +142,7 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
           }
         }
       } else {
-        imageElement.setAttribute("src", WinnieJpg);
+
         timeElement.innerText = "Start";
         titleElement.innerText = "Farming";
         btnElement.disabled = false;
@@ -224,12 +224,19 @@ localStorage.setItem("tournament", true);
               </span>
             </div>
             <div className="mining-container">
-              <img
+              	<div class="avatar">
+
+			<img src={Loaders} className="minion-img" alt="Skytsunami" />
+	
+
+	
+</div>
+{/*               <img
                 src={WinnieJpg}
                 id="imageID"
                 alt="Mining Animation"
                 className="minion-img"
-              />
+              /> */}
             </div>
             <button id="btn" className="mayning" onClick={startMining}>
               <span className="title" id="title-farming">
