@@ -18,7 +18,7 @@
 
 .minion-img {
   margin: 5px;
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   filter: drop-shadow(2px 4px 20px rgb(211, 182, 17));
 }
@@ -26,13 +26,23 @@
   position: absolute;
   bottom: 90px;
   left: 5%;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   width: 90%;
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
   border-radius: 50px;
+}
+
+@media screen and (max-width: 330px) {
+  .minion-img{
+    width: 50%;
+  }
+
+  .mayning {
+    padding: 10px;
+  }
 }
 
 .my-balance {
