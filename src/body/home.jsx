@@ -7,6 +7,7 @@ import WinnieJpg from "../assets/winni.png";
 import Calendar from "../assets/calendar.webp";
 import Cup from "../assets/cup-icon.png";
 import Loaders from "../assets/forLoader.png";
+import Loadergif from "../assets/gifss.gif";
 import Spin from "../assets/spin.png";
 import { ToastContainer, toast } from "react-toastify";
 import Tournament from "./tournament.jsx";
