@@ -183,7 +183,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
           <div className="overs-roulete" id="question" style={{ display: "none" }}>
             <div className="claim-roulete">
               <span className="claim-got">You got</span>
-              <span className="claim-span">8000 Winnie Coin</span>
+              <span className="claim-span">4500 Winnie Coin</span>
               <button className="claim-btn" onClick={posteQuestion}>Claim Bonus</button>
             </div>
           </div>
