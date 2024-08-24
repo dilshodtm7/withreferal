@@ -14,17 +14,17 @@ import { ToastContainer, toast } from "react-toastify";
 import Tournament from "./tournament.jsx";
 import Daily from "./daily.jsx";
 
-const Home = ({ data,myId,userData, fetchAccountData,tournament }) => {
+const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
   const updateStatusWithBanalce = "https://withreferal-back.onrender.com/auth/bybalance";
   const updateStatus = "https://withreferal-back.onrender.com/auth/updatestatus";
 
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
 
-  setTimeout(() => {
-    setLoading(true);
-  }, 3000);
+  // setTimeout(() => {
+  //   setLoading(true);
+  // }, 3000);
 
 
 
