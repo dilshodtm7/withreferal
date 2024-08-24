@@ -224,19 +224,19 @@ localStorage.setItem("tournament", true);
               </span>
             </div>
             <div className="mining-container">
-              	<div class="avatar">
+{/*               	<div class="avatar">
 
 			<img src={Loaders} className="minion-img" alt="Skytsunami" />
 	
 
 	
-</div>
-{/*               <img
+</div> */}
+              <img
                 src={WinnieJpg}
                 id="imageID"
                 alt="Mining Animation"
                 className="minion-img"
-              /> */}
+              />
             </div>
             <button id="btn" className="mayning" onClick={startMining}>
               <span className="title" id="title-farming">
