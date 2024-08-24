@@ -714,3 +714,42 @@
       calc(-8 * var(--w)) 1.2em #fff, calc(-9 * var(--w)) 1.2em #fff;
   }
 }
+
+
+@keyframes float {
+	0% {
+
+		transform: translatex(0px);
+	}
+
+	50% {
+
+		transform: translatex(-20px);
+	}
+
+	100% {
+
+		transform: translatex(0px);
+	}
+}
+
+
+
+.avatar {
+  margin-top: 20px;
+width: 80%;
+	overflow: hidden;
+
+	transform: translatex(0px);
+	animation: float 2s ease-in-out infinite;
+	img { width: 100%; height: auto; }
+}
+@media screen and (max-width: 330px) {
+  .avatar{
+    width:55%;
+  }
+  .minion-img{
+    filter: drop-shadow(2px 5px 5px rgb(37, 255, 135));
+
+  }
+}
