@@ -1,11 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
+import Winnie from "../assets/maynings.gif";
 import WinnieJpg from "../assets/winni.png";
 import Calendar from "../assets/calendar.webp";
 import Cup from "../assets/cup-icon.png";
+import withIcon from "../assets/loader5.gif";
 import Loaders from "../assets/forLoader.png";
 import Spin from "../assets/spin.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,23 +17,21 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
   const updateStatusWithBanalce = "https://withreferal-back.onrender.com/auth/bybalance";
   const updateStatus = "https://withreferal-back.onrender.com/auth/updatestatus";
 
-
-
-
-
   const navigate = useNavigate();
+  // const [loading, setLoading] = useState(false);
 
 
+  // setTimeout(() => {
+  //   setLoading(true);
+  // }, 3000);
 
 
 
   
   
-
   const currentDate = new Date();
   currentDate.setHours(currentDate.getHours() + 2);
   const newPostDate = currentDate.toISOString();
-
   if (loading) {
     const lastDate = data.lastdate;
     const currentDate = new Date().getUTCDate();
@@ -51,7 +50,6 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
       }, 1000);
     }
   }
-
   const notifyStart = () =>
     toast.success("Started mining", {
       position: "top-right",
@@ -63,7 +61,6 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
       progress: undefined,
       theme: "light",
     });
-
   const updateStatusWithBalance = async () => {
     const response = await fetch(updateStatusWithBanalce, {
       method: "PATCH",
@@ -77,7 +74,6 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
       }),
     });
   };
-
   const updateStatuses = async () => {
     const response = await fetch(updateStatus, {
       method: "PATCH",
@@ -110,8 +106,6 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
     setTimeout(notifyStart, 2000);
      }
   };
-
-
   useEffect(() => {
    if(loading){
     let myname = false;
@@ -136,7 +130,9 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
           btnElement.disabled = true;
           titleElement.innerText = "Mining";
           btnElement.classList.add("disabled");
+          imageElement.setAttribute("src", Winnie);
         } else {
+          imageElement.setAttribute("src", WinnieJpg);
           btnElement.disabled = false;
           btnElement.classList.remove("disabled", "activated");
           if (!myname) {
@@ -146,22 +142,20 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
           }
         }
       } else {
+        imageElement.setAttribute("src", WinnieJpg);
         timeElement.innerText = "Start";
         titleElement.innerText = "Farming";
         btnElement.disabled = false;
       }
     };
-
     const intervalId = setInterval(updateUI, 1000);
     const timeoutId = setTimeout(updateUI, 100);
-
     return () => {
       clearInterval(intervalId);
       clearTimeout(timeoutId);
     };
    }
   }, [data]);
-
   // open daily and tournament
   const toggleDisplay = (selector, displayStyle) => {
     document.querySelector(selector).style.display = displayStyle;
@@ -171,21 +165,14 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
     toggleDisplay("#tournament", "flex");
 localStorage.setItem("tournament", true);
     
-
-
   }
-
   return (
     <>
       {loading === false ? (
         <>
           <div className="loading-container">
-
-          <img src={Loaders} className="loader-img" alt="" />
-
+                    <img src={Loaders} className="loader-img" alt="" />
           <div class="loader"></div>
-          
-        
           </div>
          
          
@@ -195,13 +182,12 @@ localStorage.setItem("tournament", true);
           <div className="open-daily" onClick={openDaily}>
             <img src={Calendar} className="daily-bonus-img" alt="" />
           </div>
-          
-
+          <div className="open-tournament" onClick={openTournament}>
+            <img src={Cup} className="daily-bonus-img" alt="" />
+          </div>
           <div className="open-spin" onClick={() => navigate("/bonus")}>
             <img src={Spin} className="daily-bonus-img" alt="" />
           </div>
-
-
           <div
             className="tournament"
             id="tournament"
@@ -211,9 +197,7 @@ localStorage.setItem("tournament", true);
               <Tournament data={tournament} loading={loading} />
             </div>
           </div>
-
           
-
           <div
             className="daily-bonuses"
             id="daily-bonuses"
@@ -223,7 +207,6 @@ localStorage.setItem("tournament", true);
               <Daily myId={myId} data={data} fetchAccountData={fetchAccountData} />
             </div>
           </div>
-
           <div className="body-balance">
             <ToastContainer />
             <div className="ton-balance">
@@ -231,11 +214,7 @@ localStorage.setItem("tournament", true);
                 <div className="name">
                   <div className="name-title">Welcome</div>
                   <div className="name-subtitle">{userData?.first_name.slice(0, 20) || "User Winnie"  }</div>
-                  
                 </div>
-                <div className="open-tournament" onClick={openTournament}>
-            <img src={Cup} className="daily-bonus-img" alt="" />
-          </div>
               </div>
             </div>
             <div className="my-balance">
@@ -244,21 +223,13 @@ localStorage.setItem("tournament", true);
                 {data?.balance_winnie.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") || 0}
               </span>
             </div>
-
             <div className="mining-container">
-	<div class="avatar">
-
-			<img src={Loaders} className="minion-img" alt="Skytsunami" />
-	
-
-	
-</div>
-{/*               <img
-                src={Loaders}
+              <img
+                src={WinnieJpg}
                 id="imageID"
                 alt="Mining Animation"
                 className="minion-img"
-              /> */}
+              />
             </div>
             <button id="btn" className="mayning" onClick={startMining}>
               <span className="title" id="title-farming">
@@ -274,5 +245,4 @@ localStorage.setItem("tournament", true);
     </>
   );
 };
-
 export default Home;
