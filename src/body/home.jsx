@@ -8,6 +8,7 @@ import WinnieJpg from "../assets/winni.png";
 import Calendar from "../assets/calendar.webp";
 import Cup from "../assets/cup-icon.png";
 import withIcon from "../assets/loader5.gif";
+import Loaders from "../assets/3dgifmaker18827.gif";
 import Spin from "../assets/spin.png";
 import { ToastContainer, toast } from "react-toastify";
 import Tournament from "./tournament.jsx";
@@ -180,7 +181,8 @@ localStorage.setItem("tournament", true);
       {loading === false ? (
         <>
           <div className="loading-container">
-          <img src={withIcon} className="loader-img" alt="" />
+                    <img src={Loaders} className="loader-img" alt="" />
+
 
           <div class="loader"></div>
           </div>
