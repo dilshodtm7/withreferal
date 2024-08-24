@@ -35,6 +35,13 @@
   border-radius: 50px;
 }
 
+.time {
+  color: #fabb16;
+  background-color: black;
+  padding: 5px 20px 5px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+}
 @media screen and (max-width: 330px) {
   .minion-img{
     width: 50%;
@@ -42,6 +49,9 @@
 
   .mayning {
     padding: 10px;
+  }
+  .time{
+    font-size: 12px;
   }
 }
 
@@ -55,13 +65,7 @@
   margin: 0 auto;
 }
 
-.time {
-  color: #fabb16;
-  background-color: black;
-  padding: 5px 20px 5px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-}
+
 .title {
   font-weight: bold;
   font-size: 20px;
