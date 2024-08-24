@@ -249,7 +249,7 @@ localStorage.setItem("tournament", true);
             <div className="mining-container">
 
               <img
-                src={Loaders}
+                src={Loadergif}
                 id="imageID"
                 alt="Mining Animation"
                 className="minion-img"
