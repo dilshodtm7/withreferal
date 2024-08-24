@@ -15,14 +15,14 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
   const newquestion = "https://withreferal-back.onrender.com/auth/question";
 
   const bonus = [
+    { option: "200", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
+    { option: "350", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
     { option: "500", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
-    { option: "1000", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
+    { option: "700", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
+    { option: "1000", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
+    { option: "1500", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
     { option: "2000", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
     { option: "3000", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
-    { option: "4000", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
-    { option: "5000", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
-    { option: "6000", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
-    { option: "7000", style: { backgroundColor: "rgb(211, 182, 17)", textColor: "black" } },
   ];
 
   const currentDate = new Date();
