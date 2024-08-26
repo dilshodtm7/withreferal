@@ -17,18 +17,7 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
   const updateStatusWithBanalce = "https://withreferal-back.onrender.com/auth/bybalance";
   const updateStatus = "https://withreferal-back.onrender.com/auth/updatestatus";
 
-  const navigate = useNavigate();
-  // const [loading, setLoading] = useState(false);
-
-
-  // setTimeout(() => {
-  //   setLoading(true);
-  // }, 3000);
-
-
-
-  
-  
+  const navigate = useNavigate();  
   const currentDate = new Date();
   currentDate.setHours(currentDate.getHours() + 2);
   const newPostDate = currentDate.toISOString();
@@ -131,7 +120,6 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
           btnElement.classList.add("disabled");
 
         } else {
-
           btnElement.disabled = false;
           btnElement.classList.remove("disabled", "activated");
           if (!myname) {
@@ -148,7 +136,7 @@ const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
       }
     };
     const intervalId = setInterval(updateUI, 1000);
-    const timeoutId = setTimeout(updateUI, 100);
+    const timeoutId = setTimeout(updateUI, 10);
     return () => {
       clearInterval(intervalId);
       clearTimeout(timeoutId);
