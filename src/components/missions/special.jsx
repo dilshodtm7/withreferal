@@ -55,7 +55,6 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       }
     }, 1000);
     setTimeout(() => {
-      localStorage.removeItem('link');
       setButtonState("Claim");
     }, 3000);
   };
