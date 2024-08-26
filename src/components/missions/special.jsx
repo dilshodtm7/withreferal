@@ -45,15 +45,20 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       return () => clearTimeout(timer);
     }
   }, [newPost]);
-  const handleStartClick = () => {
+  
+    const handleStartClick = () => {
+    const taskLinks = localStorage.getItem('link');
     setButtonState("Wait");
     setTimeout(() => {
-      // window.location.href = "https://t.me/aviabot_store";
+      if(taskLinks) {
+        window.location.href = taskLinks
+      }
     }, 1000);
     setTimeout(() => {
       setButtonState("Claim");
     }, 3000);
   };
+  
   useEffect(() => {
     setInterval(() => {
       setClickedMe(localStorage.getItem("task"));
@@ -127,6 +132,7 @@ useEffect(() => {
                           className="task-list-status-button active-btn"
                           id="start"
                           onClick={() => {
+                            localStorage.setItem("link", task.link);
                             localStorage.setItem("task", task.id);
                             setNewPost(task.id);
                             localStorage.setItem("amount", task.amount);
