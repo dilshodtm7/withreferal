@@ -89,8 +89,8 @@ const invite = ({referer,loading,data}) => {
                 return (
                   <div className="friends-list-item">
             <div className="image">
-              <FaUserGraduate className="referal-icon" />
-              <div className="name">{referer.first_name ? referer.first_name : "Kimdur"}</div>
+              <img src={Tonup} className="daily-bonus-img" alt="" />
+              <div className="name">{referer.first_name ? referer.first_name : "Winnie User"}</div>
             </div>
             <div className="DIV">
               <div className="referal-balance">
