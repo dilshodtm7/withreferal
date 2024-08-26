@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Tiktok from "../../assets/tok.webp";
 import Youtube from "../../assets/youtube.png";
 import Insta from "../../assets/insta.png";
-import Coin from "../../assets/coin-icon.jpg";
 import Ton from "../../assets/ton.png";
 
 const content = () => {
