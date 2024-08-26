@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CoinIcon from "../assets/coin-icon.jpg";
+import CoinIcon from "../assets/winni.png";
 import { ToastContainer, toast } from "react-toastify";
 
 const daily = ({ data, myId, fetchAccountData }) => {
