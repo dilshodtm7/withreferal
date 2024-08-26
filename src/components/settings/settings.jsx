@@ -70,38 +70,76 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
       document.getElementById("overs-roulete").style.display = "flex";
     }
   };
-
   const handleUIUpdate = (btnId, dataDate, newText, callback) => {
-    const btn = document.getElementById(btnId);
-    const currentDate = new Date();
-    const storedDate = new Date(dataDate);
+  const btn = document.getElementById(btnId);
+  const currentDate = new Date();
+  const storedDate = new Date(dataDate);
 
-    const diffMs = storedDate - currentDate;
-    if (diffMs > 0) {
-      btn.innerText = `${Math.floor(diffMs / (1000 * 60 * 60))}h : ${Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))}m : ${Math.floor((diffMs % (1000 * 60)) / 1000)}s`;
-      btn.disabled = true;
-    } else {
-      callback();
-      btn.innerText = newText;
-      btn.disabled = false;
-    }
-  };
+  const diffMs = storedDate - currentDate;
 
-  useEffect(() => {
-    if (loading) {
-      const spinBtnUpdate = () => handleUIUpdate("spin-btn", data.spin_date, "Free Spin", () => {});
-      const questionBtnUpdate = () => handleUIUpdate("question-btn", data.question, "Enter Question", () => {
-        document.querySelectorAll(".crossword-input").forEach(input => input.readOnly = false);
-      });
+  if (btn.innerText === "Loading") {
+    btn.disabled = true;
+  } else if (diffMs > 0) {
+    btn.innerText = `${Math.floor(diffMs / (1000 * 60 * 60))}h : ${Math.floor(
+      (diffMs % (1000 * 60 * 60)) / (1000 * 60)
+    )}m : ${Math.floor((diffMs % (1000 * 60)) / 1000)}s`;
+    btn.disabled = true;
+  } else {
+    callback();
+    btn.disabled = false;
+    btn.innerText = newText;
+  }
+};
 
-      const intervalId = setInterval(() => {
-        spinBtnUpdate();
-        questionBtnUpdate();
-      }, 1000);
+useEffect(() => {
+  if (loading) {
+    const spinBtnUpdate = () => handleUIUpdate("spin-btn", data.spin_date, "Free Spin", () => {});
+    const questionBtnUpdate = () => handleUIUpdate("question-btn", data.question, "Enter Question", () => {
+      document.querySelectorAll(".crossword-input").forEach(input => input.readOnly = false);
+    });
 
-      return () => clearInterval(intervalId);
-    }
-  }, [data, loading]);
+    const intervalId = setInterval(() => {
+      spinBtnUpdate();
+      questionBtnUpdate();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }
+}, [data, loading]);
+
+
+  // const handleUIUpdate = (btnId, dataDate, newText, callback) => {
+  //   const btn = document.getElementById(btnId);
+  //   const currentDate = new Date();
+  //   const storedDate = new Date(dataDate);
+
+  //   const diffMs = storedDate - currentDate;
+  //   if (diffMs > 0) {
+  //     btn.innerText = `${Math.floor(diffMs / (1000 * 60 * 60))}h : ${Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))}m : ${Math.floor((diffMs % (1000 * 60)) / 1000)}s`;
+  //     btn.disabled = true;
+  //   } else {
+  //     callback();
+  //     btn.disabled = false;
+  //     btn.innerText = newText;
+      
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (loading) {
+  //     const spinBtnUpdate = () => handleUIUpdate("spin-btn", data.spin_date, "Free Spin", () => {});
+  //     const questionBtnUpdate = () => handleUIUpdate("question-btn", data.question, "Enter Question", () => {
+  //       document.querySelectorAll(".crossword-input").forEach(input => input.readOnly = false);
+  //     });
+
+  //     const intervalId = setInterval(() => {
+  //       spinBtnUpdate();
+  //       questionBtnUpdate();
+  //     }, 1000);
+
+  //     return () => clearInterval(intervalId);
+  //   }
+  // }, [data, loading]);
 
   const handleInputChange = (event, index) => {
     const value = event.target.value.toUpperCase();
