@@ -208,7 +208,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
                 />
               ))}
             </div>
-            <button className="crossword-btn-enter" id="question-btn" onClick={checkAnswer}>Enter</button>
+            <button className="crossword-btn-enter" id="question-btn" onClick={checkAnswer} disabled>Loading</button>
             {message && <div className="message">{message}</div>}
           </div>
 
@@ -232,7 +232,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
                 }}
               />
             </div>
-            <button className="spin-btn" id="spin-btn" onClick={handleSpinClick}>Free spin</button>
+            <button className="spin-btn" id="spin-btn" onClick={handleSpinClick} disabled>Loading</button>
           </div>
         </>
       )}
