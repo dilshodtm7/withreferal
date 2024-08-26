@@ -3,26 +3,26 @@ import Cup from "../assets/cup-icon.png";
 import WinnieJpg from "../assets/winni.png";
 import Ton from "../assets/ton.png";
 
-const tournament = ( {data,loading}) => {
-
-  const participants = [
-    { rank: 1, name: "I'm first", points: 5000, bonus: 15 },
-    { rank: 2, name: "I'm second", points: 4000, bonus: 10 },
-    { rank: 3, name: "I'm third", points: 3500, bonus: 5 },
-    { rank: 4, name: "I'm fourth", points: 3000 },
-    { rank: 5, name: "I'm fifth", points: 2800 },
-    { rank: 6, name: "I'm sixth", points: 2500 },
-    { rank: 7, name: "I'm seventh", points: 2400 },
-    { rank: 8, name: "I'm eighth", points: 2000 },
-    { rank: 9, name: "I'm ninth", points: 1500 },
-  ];
-
+const tournament = ({ data, myId, loading }) => {
   const toggleDisplay = (selector, displayStyle) => {
     document.querySelector(selector).style.display = displayStyle;
   };
   const closeTournament = () => toggleDisplay("#tournament", "none");
 
-  const singleParticipant = participants.find((p) => p.rank === 1);
+  if (loading === true) {
+    var firstTenParticipants = data.slice(0, 100);
+    var singleParticipant = data.find((p) => p.user_tg == myId);
+    var indexes = data.findIndex((p) => p.user_tg == myId);
+    if (firstTenParticipants[0]) {
+      firstTenParticipants[0].bonus = 15;
+    }
+    if (firstTenParticipants[1]) {
+      firstTenParticipants[1].bonus = 10;
+    }
+    if (firstTenParticipants[2]) {
+      firstTenParticipants[2].bonus = 5;
+    }
+  }
 
   return (
     <>
@@ -66,19 +66,22 @@ const tournament = ( {data,loading}) => {
             </button>
             <div className="my-account">
               {singleParticipant && (
-                <div className="list-tournament" key={singleParticipant.rank}>
+                <div
+                  className="list-tournament"
+                  key={singleParticipant.user_tg}
+                >
                   <div className="li-info">
                     <div className="images">
                       <img src={Cup} className="daily-bonus-img" alt="" />
                     </div>
                     <div className="li-names">
                       <div>
-                        <span>{singleParticipant.name}</span>
+                        <span>{singleParticipant.first_name}</span>
                       </div>
                       <div className="li-points">
                         <img src={WinnieJpg} className="weekly-bonus" alt="" />
                         <span>
-                          {singleParticipant.points
+                          {singleParticipant.balance_winnie
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                         </span>
@@ -87,6 +90,7 @@ const tournament = ( {data,loading}) => {
                     {singleParticipant.bonus && (
                       <div className="list-bonus-weeks">
                         <img src={Ton} className="weekly-bonus" alt="" />
+                        <span>&nbsp;</span>
                         <span>
                           {singleParticipant.bonus
                             .toString()
@@ -96,7 +100,7 @@ const tournament = ( {data,loading}) => {
                     )}
                   </div>
                   <div className="tops">
-                    <span>{singleParticipant.rank}</span>
+                    <span>{indexes + 1}</span>
                   </div>
                 </div>
               )}
@@ -110,30 +114,31 @@ const tournament = ( {data,loading}) => {
           </div>
           <hr className="tournament-hr" />
           <div className="tournament-rules">
-            {participants.map((participant) => (
-              <div className="list-tournament" key={participant.rank}>
+            {firstTenParticipants.map((data, index) => (
+              <div className="list-tournament" key={data.index + 1}>
                 <div className="li-info">
                   <div className="images">
                     <img src={Cup} className="daily-bonus-img" alt="" />
                   </div>
                   <div className="li-names">
                     <div>
-                      <span>{participant.name}</span>
+                      <span>{data.first_name}</span>
                     </div>
                     <div className="li-points">
                       <img src={WinnieJpg} className="weekly-bonus" alt="" />
                       <span>
-                        {participant.points
+                        {data.balance_winnie
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                       </span>
                     </div>
                   </div>
-                  {participant.bonus && (
+                  {data.bonus && (
                     <div className="list-bonus-weeks">
                       <img src={Ton} className="weekly-bonus" alt="" />
+                      <span>&nbsp;</span>
                       <span>
-                        {participant.bonus
+                        {data.bonus
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                       </span>
@@ -141,7 +146,7 @@ const tournament = ( {data,loading}) => {
                   )}
                 </div>
                 <div className="tops">
-                  <span>{participant.rank}</span>
+                  <span>{index + 1}</span>
                 </div>
               </div>
             ))}
