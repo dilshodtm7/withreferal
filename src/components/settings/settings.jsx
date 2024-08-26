@@ -100,7 +100,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
       const intervalId = setInterval(() => {
         spinBtnUpdate();
         questionBtnUpdate();
-      }, 1000);
+      }, 50);
 
       return () => clearInterval(intervalId);
     }
