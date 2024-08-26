@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import { FaTelegram } from "react-icons/fa";
 import withIcon from "../../assets/loader5.gif";
 
-const special = ({ data,myId, fetchAccountData, loading }) => {
+const Special = ({ data, myId, fetchAccountData, loading }) => {
   const Complate = "https://withreferal-back.onrender.com/auth/complate";
 
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [newPost, setNewPost] = useState(null);
-   const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [clickedMe, setClickedMe] = useState(localStorage.getItem("task"));
-  const [buttonState, setButtonState] = useState("CLAIM");
+  const [taskLink, setTaskLink] = useState(null);
+  const [buttonState, setButtonState] = useState("Claim");
+
   useEffect(() => {
     if (loading) {
       setTasks(data.uncomplated);
       setCompletedTasks(data.complated);
     }
-  });
+  }, [loading, data]);
+
   const ComplateTasks = async () => {
     try {
       const response = await fetch(Complate, {
@@ -30,6 +33,7 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
           amount: amount,
         }),
       });
+
       if (response.ok) {
         console.log("Account data updated successfully");
       }
@@ -37,6 +41,7 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       console.error("Error fetching account data:", error);
     }
   };
+
   useEffect(() => {
     if (newPost !== null) {
       const timer = setTimeout(() => {
@@ -45,65 +50,67 @@ const special = ({ data,myId, fetchAccountData, loading }) => {
       return () => clearTimeout(timer);
     }
   }, [newPost]);
-  
-    const handleStartClick = () => {
-    const taskLinks = localStorage.getItem('link');
+
+  const handleStartClick = () => {
+    const taskLinks = localStorage.getItem("link");
     setButtonState("Wait");
     setTimeout(() => {
-      if(taskLinks) {
-        window.location.href = taskLinks
+      if (taskLinks) {
+        window.location.href = taskLinks;
       }
     }, 1000);
     setTimeout(() => {
+      localStorage.removeItem("link");
       setButtonState("Claim");
     }, 3000);
   };
-  
+
   useEffect(() => {
-    setInterval(() => {
-      setClickedMe(localStorage.getItem("task"));
-    }, 1000);
-  });
-
-
-  
-useEffect(() => {
-  const intervalId = setInterval(() => {
-    const checked = document.getElementById("checked");
-    if (checked) {
-      if (checked.innerText === 'Claimed') {
+    const intervalId = setInterval(() => {
+      const checked = document.getElementById("checked");
+      if (checked.innerText === "Claimed" || checked.innerText === "Wait") {
         checked.disabled = true;
       } else {
         checked.disabled = false;
       }
-    }
-  }, 1000);
+    }, 1000);
 
-  return () => clearInterval(intervalId); // Cleanup the interval on component unmount
-}, [clickedMe]); 
+    return () => clearInterval(intervalId);
+  }, [clickedMe]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setClickedMe(localStorage.getItem("task"));
+    }, 1000);
 
+    return () => clearInterval(intervalId);
+  });
 
-  
   const checkTask = () => {
-   setButtonState("Claimed");
     ComplateTasks();
-        setTimeout(() => {
+    setButtonState("Wait");
+    setTimeout(() => {
       fetchAccountData();
     }, 2000);
   };
+
   return (
     <>
       {loading === false ? (
         <>
           <img src={withIcon} className="loader-img" alt="" />
-          <div class="loader"></div>
+          <div className="loader"></div>
         </>
       ) : (
-        <>
-          <div className="task-list">
-            {tasks.map((task) => (
-              <div className="task-list-item" id="task" key={task.id}>
+        <div className="task-list">
+          {tasks.map((task) => {
+            const isPathMatching = window.location.pathname === task.link;
+            return (
+              <div
+                className={`task-list-item ${isPathMatching ? "highlight" : ""}`}
+                id="task"
+                key={task.id}
+              >
                 <div className="task-list-image">
                   <FaTelegram className="task-list-image-icon" />
                 </div>
@@ -154,41 +161,42 @@ useEffect(() => {
                   </div>
                 </div>
               </div>
-            ))}
-           {
-            completedTasks? 
-           <> <hr className="task-hr" />
-            {completedTasks.map((task) => (
-              <div className="task-list-item " key={task.id}>
-                <div className="task-list-image">
-                  <FaTelegram className="task-list-image-icon" />
-                </div>
-                <div className="task-info">
-                  <div className="task-list-name">
-                    <div className="task-list-name-title title-complated ">
-                      {task.title}
+            );
+          })}
+          {completedTasks && (
+            <>
+              <hr className="task-hr" />
+              {completedTasks.map((task) => (
+                <div className="task-list-item" key={task.id}>
+                  <div className="task-list-image">
+                    <FaTelegram className="task-list-image-icon" />
+                  </div>
+                  <div className="task-info">
+                    <div className="task-list-name">
+                      <div className="task-list-name-title title-complated">
+                        {task.title}
+                      </div>
+                      <div className="task-list-name-subtitle title-complated">
+                        {task.amount
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
+                        Winnie
+                      </div>
                     </div>
-                    <div className="task-list-name-subtitle title-complated">
-                      {task.amount
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, "  ") || 0}{" "}
-                      Winnie
+                    <div className="task-list-status">
+                      <button className="task-list-status-button completed">
+                        Completed
+                      </button>
                     </div>
                   </div>
-                  <div className="task-list-status">
-                    <button className="task-list-status-button completed">
-                      Completed
-                    </button>
-                  </div>
                 </div>
-              </div>
-            ))}
-            </> : null
-           }
-          </div>
-        </>
+              ))}
+            </>
+          )}
+        </div>
       )}
     </>
   );
 };
-export default special;
+
+export default Special;
