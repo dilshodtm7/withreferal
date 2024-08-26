@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FaTelegram } from "react-icons/fa";
 import withIcon from "../../assets/loader5.gif";
+import telegram from "../../assets/telegram.png";
+import Tiktok from "../../assets/tok.webp";
+import Youtube from "../../assets/youtube.png";
+import Insta from "../../assets/insta.png";
 
 const Special = ({ data, myId, fetchAccountData, loading }) => {
   const Complate = "https://withreferal-back.onrender.com/auth/complate";
@@ -112,7 +115,7 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
                 key={task.id}
               >
                 <div className="task-list-image">
-                  <FaTelegram className="task-list-image-icon" />
+                  {task.image  == 'telegram' ? <img src={telegram} className="task-list-image-icon" alt=""/>  : task.image == 'youtube' ? <img src={Youtube} className="task-list-image-icon" alt=""/> : task.image == 'tiktok' ? <img src={Tiktok} className="task-list-image-icon" alt=""/> : task.image == 'instagram' ? <img src={Insta} className="task-list-image-icon" /> : null}
                 </div>
                 <div className="task-info">
                   <div className="task-list-name">
@@ -169,7 +172,7 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
               {completedTasks.map((task) => (
                 <div className="task-list-item" key={task.id}>
                   <div className="task-list-image">
-                    <FaTelegram className="task-list-image-icon" />
+                    {task.image  == 'telegram' ? <img src={telegram} className="task-list-image-icon" alt=""/>  : task.image == 'youtube' ? <img src={Youtube} className="task-list-image-icon" alt=""/> : task.image == 'tiktok' ? <img src={Tiktok} className="task-list-image-icon" alt=""/> : task.image == 'instagram' ? <img src={Insta} className="task-list-image-icon" /> : null}
                   </div>
                   <div className="task-info">
                     <div className="task-list-name">
