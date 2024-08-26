@@ -193,7 +193,7 @@ localStorage.setItem("tournament", true);
             style={{ display: "none" }}
           >
             <div className="tournament-container">
-              <Tournament data={tournament} loading={loading} />
+              <Tournament data={tournament} myId={myId} loading={loading} />
             </div>
           </div>
           
@@ -224,18 +224,8 @@ localStorage.setItem("tournament", true);
             </div>
             <div className="mining-container">
               	<div class="avatar">
-
-			<img src={Loaders} className="minion-img" alt="Skytsunami" />
-	
-
-	
-</div>
-{/*               <img
-                src={WinnieJpg}
-                id="imageID"
-                alt="Mining Animation"
-                className="minion-img"
-              /> */}
+        	<img src={Loaders} className="minion-img" alt="Skytsunami" />	
+            </div>
             </div>
             <button id="btn" className="mayning" onClick={startMining}>
               <span className="title" id="title-farming">
