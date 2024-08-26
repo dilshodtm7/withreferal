@@ -3,6 +3,7 @@ import "./invite.css";
 import { FaCopy } from "react-icons/fa";
 import { FaUserGraduate } from "react-icons/fa";
 import Tonup from "../../assets/winni.png";
+import ForUsers from "../../assets/forusers.png";
 import Ton from "../../assets/ton.png";
 import withIcon from "../../assets/loader5.gif";
 import { ToastContainer, toast } from "react-toastify";
@@ -84,7 +85,7 @@ const invite = ({ referer, loading, data }) => {
                 return (
                   <div className="friends-list-item">
                     <div className="image">
-                      <img src={Tonup} className="daily-bonus-img" alt="" />
+                      <img src={ForUsers} className="daily-bonus-img" alt="" />
                       <div className="name">
                         {referer.first_name
                           ? referer.first_name
