@@ -251,8 +251,10 @@ const Swap = ({ data, fetchAccountData, myId, toggleVisibility }) => {
           </div>
         </div>
 
-        <button className="swap-btn" onClick={submits}>
-          Swap
+        <button className="swap-btn" 
+{/*           onClick={submits} */}
+          >
+          Coming Soon
         </button>
         <div className="alert">
           <span id="alert"></span>
