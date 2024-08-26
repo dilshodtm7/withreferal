@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Cup from "../assets/cup-icon.png";
-import WinnieJpg from "../assets/winni.png";
+import Cup from "../assets/winni.png";
 import Ton from "../assets/ton.png";
 
 const tournament = ({ data, myId, loading }) => {
@@ -79,7 +78,6 @@ const tournament = ({ data, myId, loading }) => {
                         <span>{singleParticipant.first_name}</span>
                       </div>
                       <div className="li-points">
-                        <img src={WinnieJpg} className="weekly-bonus" alt="" />
                         <span>
                           {singleParticipant.balance_winnie
                             .toString()
@@ -125,7 +123,6 @@ const tournament = ({ data, myId, loading }) => {
                       <span>{data.first_name}</span>
                     </div>
                     <div className="li-points">
-                      <img src={WinnieJpg} className="weekly-bonus" alt="" />
                       <span>
                         {data.balance_winnie
                           .toString()
