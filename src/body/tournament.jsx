@@ -109,7 +109,7 @@ const tournament = ({ data, myId, loading }) => {
 
           <div className="tournament-prize-pool">
             <div className="prize-pool-description">
-              The total prize pool for the weekly tournament is 30 TON.
+              The total prize pool for the weekly tournament is <img src={Ton} className="weekly-bonus" alt="" />  30 TON.
             </div>
           </div>
           <hr className="tournament-hr" />
