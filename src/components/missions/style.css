@@ -101,10 +101,12 @@
 }
 
 .task-list-image-icon {
+  width: 40px;
   font-size: 35px;
   color: #2aa2dc;
   margin-left: 10px;
 }
+
 
 .content {
   width: 100%;
