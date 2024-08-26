@@ -59,7 +59,8 @@ const Special = ({ data, myId, fetchAccountData, loading }) => {
     setButtonState("Wait");
     setTimeout(() => {
       if (taskLinks) {
-        window.location.href = taskLinks;
+        window.open(taskLinks, '_blank');
+
       }
     }, 1000);
     setTimeout(() => {
