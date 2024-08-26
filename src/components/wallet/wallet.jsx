@@ -118,13 +118,13 @@ const Home = ({ data, loading , fetchAccountData, myId }) => {
           </button>
           <div className="exchange">
             <div className="exchange-btns"
-{/*               onClick={() => toggleVisibility("transferlist", "none") || toggleVisibility("transfer", "block")} */}
+              onClick={() => toggleVisibility("transferlist", "none") || toggleVisibility("transfer", "block")}
               >
               <MdCallReceived className="icon-btn" />
               <span className="exchange-text">Receive</span>
             </div>
             <div className="exchange-btns"
-{/*               onClick={() => toggleVisibility("transferlist", "none") || toggleVisibility("transfersend", "block")} */}
+              onClick={() => toggleVisibility("transferlist", "none") || toggleVisibility("transfersend", "block")}
               >
               <MdCallMade className="icon-btn" />
               <span className="exchange-text">Send</span>
