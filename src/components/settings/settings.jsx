@@ -137,7 +137,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
       return;
     }
 
-    const newStatus = inputs.map((input, index) => (input === "DILSHOD"[index] ? "correct" : "incorrect"));
+    const newStatus = inputs.map((input, index) => (input === "BTC"[index] ? "correct" : "incorrect"));
     setStatus(newStatus);
 
     if (newStatus.every((status) => status === "correct")) {
