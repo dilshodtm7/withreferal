@@ -7,8 +7,8 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
   const [result, setResult] = useState(null);
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const [inputs, setInputs] = useState(Array(7).fill(""));
-  const [status, setStatus] = useState(Array(7).fill("default"));
+  const [inputs, setInputs] = useState(Array(3).fill(""));
+  const [status, setStatus] = useState(Array(3).fill("default"));
   const [message, setMessage] = useState("");
 
   const newspin = "https://withreferal-back.onrender.com/auth/newspin";
