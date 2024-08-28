@@ -116,7 +116,7 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
       newStatus[index] = "default";
     } else {
       newStatus[index] = "written";
-      if (index < 6) {
+      if (index < 2) {
         inputRefs.current[index + 1].focus();
       }
     }
