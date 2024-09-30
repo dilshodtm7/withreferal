@@ -14,7 +14,7 @@ import Tournament from "./tournament.jsx";
 import Daily from "./daily.jsx";
 
 const Home = ({ data,myId,userData,loading, fetchAccountData,tournament }) => {
-  const updateStatusWithBanalce = https://withreferal-back-1.onrender.com/auth/bybalance";
+  const updateStatusWithBanalce = "https://withreferal-back-1.onrender.com/auth/bybalance";
   const updateStatus = "https://withreferal-back-1.onrender.com/auth/updatestatus";
 
   const navigate = useNavigate();  
