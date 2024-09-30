@@ -6,7 +6,7 @@ import Youtube from "../../assets/youtube.png";
 import Insta from "../../assets/insta.png";
 
 const Special = ({ data, myId, fetchAccountData, loading }) => {
-  const Complate = "https://withreferal-back.onrender.com/auth/complate";
+  const Complate = "https://withreferal-back-1.onrender.com/auth/complate";
 
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
