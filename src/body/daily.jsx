@@ -3,7 +3,7 @@ import CoinIcon from "../assets/winni.png";
 import { ToastContainer, toast } from "react-toastify";
 
 const daily = ({ data, myId, fetchAccountData }) => {
-  const updatelastDate = https://withreferal-back-1.onrender.com/auth/bydate";
+  const updatelastDate = "https://withreferal-back-1.onrender.com/auth/bydate";
 
   const dailyBonuses = [
     { id: 1, day: 1, amount: 100 },
