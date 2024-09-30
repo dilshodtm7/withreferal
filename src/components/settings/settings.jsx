@@ -11,8 +11,8 @@ const Settings = ({ data, loading, myId, fetchAccountData }) => {
   const [status, setStatus] = useState(Array(3).fill("default"));
   const [message, setMessage] = useState("");
 
-  const newspin = "https://withreferal-back.onrender.com/auth/newspin";
-  const newquestion = "https://withreferal-back.onrender.com/auth/question";
+  const newspin = "https://withreferal-back-1.onrender.com/auth/newspin";
+  const newquestion = "https://withreferal-back-1.onrender.com/auth/question";
 
   const bonus = [
     { option: "200", style: { backgroundColor: "#1E2C3A", textColor: "white" } },
